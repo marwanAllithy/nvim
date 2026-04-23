@@ -30,7 +30,7 @@ if vim.g.neovide then
 end
 
 -- obsidian
-vim.o.conceallevel = 2
+vim.o.conceallevel = 0
 
 vim.opt.termguicolors = true
 
