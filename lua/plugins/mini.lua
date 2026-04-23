@@ -1,4 +1,5 @@
-return { -- Collection of various small independent plugins/modules
+return {
+	{ -- Collection of various small independent plugins/modules
 		"nvim-mini/mini.nvim",
 		config = function()
 			-- Better Around/Inside textobjects
@@ -41,4 +42,6 @@ return { -- Collection of various small independent plugins/modules
 			-- ... and there is more!
 			--  Check out: https://github.com/nvim-mini/mini.nvim
 		end,
-	}
+	},
+	{ "NMAC427/guess-indent.nvim", opts = {} },
+}
