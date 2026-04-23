@@ -7,3 +7,8 @@
 ```
 
 # MINIMAL, FUNCTIONAL.
+
+### No bs, plug and play, works with neovide and matugen.
+```bash
+git clone https://github.com/marwanAllithy/nvim.git ~/.config/nvim
+```
