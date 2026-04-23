@@ -2,21 +2,31 @@ return {
 
 	{
 		"mrcjkb/rustaceanvim",
-		version = "^5", -- recommended
-		lazy = false, -- this plugin is already lazy
+		version = "^5",
+		lazy = false,
 		ft = "rust",
+		config = function()
+			vim.api.nvim_create_autocmd("CursorHold", {
+				pattern = "*.rs",
+				callback = function()
+					vim.cmd.RustLsp({ "hover", "actions" })
+				end,
+			})
+		end,
 		["rust-analyzer"] = {
 			cargo = {
 				allfeatures = true,
 				checkonsave = { command = "clippy" },
 				completion = { autoimport = { enable = true }, postfix = { enable = true } },
 				imports = { granularity = { group = "module" }, prefix = "self" },
-				inlayhints = {
-					lifetimeelisionhints = { enable = true, useparameternames = true },
-					parameterhints = { enable = true },
-					typehints = { enable = true },
-				},
+				loadOutDirsFromPkgJson = true,
 			},
+			inlayhints = {
+				lifetimeelisionhints = { enable = true, useparameternames = true },
+				parameterhints = { enable = true },
+				typehints = { enable = true },
+			},
+			typingAutoWrap = "force",
 		},
 	},
 	{
@@ -30,16 +40,7 @@ return {
 		"saecki/crates.nvim",
 		ft = { "toml" },
 		config = function()
-			require("crates").setup({
-				completion = {
-					cmp = {
-						enabled = true,
-					},
-				},
-			})
-			require("cmp").setup.buffer({
-				sources = { { name = "crates" } },
-			})
+			require("crates").setup({})
 		end,
 	},
 }

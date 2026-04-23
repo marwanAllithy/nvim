@@ -69,16 +69,37 @@ vim.o.scrolloff = 10
 vim.o.confirm = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
+-- auto open dianostics
+vim.api.nvim_create_autocmd("CursorHold", {
+	callback = function()
+		-- only open if there are diagnostics on this line
+		local diags = vim.diagnostic.get(0, { lnum = vim.fn.line(".") - 1 })
+		if #diags == 0 then
+			return
+		end
+
+		vim.diagnostic.open_float(nil, {
+			focus = false,
+			-- border = "rounded",
+			source = "always",
+			prefix = "",
+			scope = "cursor",
+		})
+	end,
+})
+
 vim.diagnostic.config({
 	update_in_insert = false,
 	severity_sort = true,
 	float = { border = "rounded", source = "if_many" },
-	underline = { severity = { min = vim.diagnostic.severity.WARN } },
+	underline = true,
 
-	virtual_text = true, -- Text shows up at the end of the line
-	virtual_lines = false, -- Text shows up underneath the line, with virtual lines
+	virtual_text = true,
+	virtual_text = {
+		severity = { min = vim.diagnostic.severity.HINT },
+	},
+	signs = true,
 
-	-- Auto open the float, so you can easily read the errors when jumping with `[d` and `]d`
 	jump = { float = true },
 })
 

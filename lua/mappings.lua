@@ -22,29 +22,29 @@ map("n", "<C-|>", "<cmd>vsplit<CR>", { desc = "Vertical split" })
 map("n", "<C-->", "<cmd>split<CR>", { desc = "Horizontal split" })
 -- open terminal
 map("n", "<leader>kt", function()
-  local dir = vim.fn.getcwd()   -- always use the session's cwd
+	local dir = vim.fn.getcwd() -- always use the session's cwd
 
-  vim.fn.jobstart({
-    "kitty",
-    "-e",
-    "zsh",
-    "-c",
-    "tmux",
-    string.format("cd %q; exec zsh", dir),
-  }, {
-    detach = true,
-  })
+	vim.fn.jobstart({
+		"kitty",
+		"-e",
+		"zsh",
+		"-c",
+		"tmux",
+		string.format("cd %q; exec zsh", dir),
+	}, {
+		detach = true,
+	})
 end, { desc = "Open Kitty in Neovim CWD" })
 
 -- telescope
-local builtin = require('telescope.builtin')
-map('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
-map('n', '<leader>fa', function()
-  builtin.find_files({ hidden = true, no_ignore = false })
-end, { desc = 'Telescope find all files (including hidden)' })
-map('n', '<leader>fw', builtin.live_grep, { desc = 'Telescope live grep' })
-map('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
-map('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+local builtin = require("telescope.builtin")
+map("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
+map("n", "<leader>fa", function()
+	builtin.find_files({ hidden = true, no_ignore = false })
+end, { desc = "Telescope find all files (including hidden)" })
+map("n", "<leader>fw", builtin.live_grep, { desc = "Telescope live grep" })
+map("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
+map("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
 
 -- bufferline
 map("n", "<Tab>", ":BufferLineCycleNext<CR>", { desc = "Next buffer" })
