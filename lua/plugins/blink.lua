@@ -2,6 +2,7 @@ return { -- Autocompletion
 	"saghen/blink.cmp",
 	event = "VimEnter",
 	version = "1.*",
+
 	dependencies = {
 		-- Snippet Engine
 		{
@@ -32,7 +33,7 @@ return { -- Autocompletion
 	---@type blink.cmp.Config
 	opts = {
 		keymap = {
-			preset = "none",
+			preset = "default",
 
 			["<Tab>"] = { "select_next", "fallback" },
 			["<S-Tab>"] = { "select_prev", "fallback" },
@@ -49,15 +50,28 @@ return { -- Autocompletion
 			-- Adjusts spacing to ensure icons are aligned
 			nerd_font_variant = "mono",
 		},
-
 		completion = {
+			menu = {
+				draw = {
+					columns = {
+						{ "label", "label_description", gap = 1 },
+						{ "kind_icon", "kind" },
+					},
+				},
+			},
 			-- By default, you may press `<c-space>` to show the documentation.
 			-- Optionally, set `auto_show = true` to show the documentation after a delay.
-			documentation = { auto_show = true, auto_show_delay_ms = 200 },
+			list = {
+				selection = {
+					preselect = true,
+					auto_insert = true,
+				},
+			},
+			documentation = { auto_show = true, auto_show_delay_ms = 100 },
 		},
 
 		sources = {
-			default = { "lsp", "path", "snippets" },
+			default = { "lsp", "buffer", "path", "snippets" },
 		},
 
 		snippets = { preset = "luasnip" },
@@ -69,6 +83,7 @@ return { -- Autocompletion
 		-- the rust implementation via `'prefer_rust_with_warning'`
 		--
 		-- See :h blink-cmp-config-fuzzy for more information
+		-- fuzzy = { implementation = "prefer_rust_with_warning" },
 		fuzzy = { implementation = "prefer_rust_with_warning" },
 
 		-- Shows a signature help window while you type arguments for a function
