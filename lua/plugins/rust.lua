@@ -1,11 +1,17 @@
 return {
-
 	{
 		"mrcjkb/rustaceanvim",
 		version = "^5",
 		lazy = false,
 		ft = "rust",
 		config = function()
+			vim.g.rustaceanvim = {
+				tools = {
+					float_win_config = {
+						border = "single",
+					},
+				},
+			}
 			vim.api.nvim_create_autocmd("CursorHold", {
 				pattern = "*.rs",
 				callback = function()

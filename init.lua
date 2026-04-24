@@ -80,7 +80,7 @@ vim.api.nvim_create_autocmd("CursorHold", {
 
 		vim.diagnostic.open_float(nil, {
 			focus = false,
-			-- border = "rounded",
+			border = "single",
 			source = "always",
 			prefix = "",
 			scope = "cursor",
@@ -91,10 +91,9 @@ vim.api.nvim_create_autocmd("CursorHold", {
 vim.diagnostic.config({
 	update_in_insert = false,
 	severity_sort = true,
-	float = { border = "rounded", source = "if_many" },
+	float = { border = "single", source = "if_many" },
 	underline = true,
 
-	virtual_text = true,
 	virtual_text = {
 		severity = { min = vim.diagnostic.severity.HINT },
 	},
