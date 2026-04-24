@@ -12,3 +12,8 @@
 ```bash
 git clone https://github.com/marwanAllithy/nvim.git ~/.config/nvim
 ```
+
+### Prerequisite 
+```bash
+sudo pacman -S --noconfirm --needed gcc make git ripgrep fd tree-sitter-cli unzip neovim
+```
