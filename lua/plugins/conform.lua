@@ -13,11 +13,9 @@ return { -- Autoformat
 		},
 	},
 	---@module 'conform'
-	---@type conform.setupOpts
 	opts = {
 		notify_on_error = true,
 		format_on_save = function(bufnr)
-			-- You can specify filetypes to autoformat on save here:
 			local enabled_filetypes = {
 				rust = true,
 				html = true,
@@ -33,15 +31,11 @@ return { -- Autoformat
 			end
 		end,
 		default_format_opts = {
-			lsp_format = "fallback", -- Use external formatters if configured below, otherwise use LSP formatting. Set to `false` to disable LSP formatting entirely.
+			lsp_format = "fallback",
 		},
-		-- You can also specify external formatters in here.
 		formatters_by_ft = {
 			rust = { "rustfmt" },
-			-- Conform can also run multiple formatters sequentially
-			-- python = { "isort", "black" },
-			--
-			-- You can use 'stop_after_first' to run the first available formatter from the list
+			svelte = { "prettierd", "prettier", stop_after_first = true },
 			javascript = { "prettierd", "prettier", stop_after_first = true },
 		},
 	},
